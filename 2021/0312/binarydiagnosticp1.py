@@ -11,7 +11,7 @@ for i in range(len(readings[0])):
     ones = 0
     zeroes = 0
     for stream in readings:
-        if stream[i] == "0":
+        if stream[i] == "1":
             ones += 1
         else:
             zeroes +=1
