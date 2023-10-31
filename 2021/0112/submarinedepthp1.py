@@ -1,3 +1,4 @@
+#Part one
 file = open("input.txt")
 readings = file.readlines()
 file.close()
