@@ -21,6 +21,3 @@ for x in arr:
     fish += x
 
 print(fish)
-
-
-
