@@ -1,4 +1,4 @@
-with open("input.txt",'r') as f:
+with open("input_test.txt",'r') as f:
     data = f.read()
 
 rows = [x for x in data.split('\n')]
@@ -40,7 +40,7 @@ def parse_segment(segment):
         elif len(s) == 5 and len(superior_replace(digits[7], superior_replace(digits[4], s))) == 2:
             digits[2] = s
 
-    return digits                    
+    return digits                
 
 numbers = {
     0:0,
@@ -55,14 +55,24 @@ numbers = {
     9:0
 }
 
+sevensegmentsum = 0
+
 for x,y in zip(segment, digits):
     code = parse_segment(x)
+    print(code)
+    string_sum =""
     for digit in y:
         digit = ''.join(sorted(digit))
+        print(digit)
+
         for i in range(len(code)):
             if code[i] == digit:
+                print(i)
+                string_sum += str(i)
                 numbers[i] +=1
-
+    print(string_sum)
+    sevensegmentsum+=int(string_sum)
 
 print(numbers)
+print(sevensegmentsum)
 
