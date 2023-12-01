@@ -22,6 +22,7 @@ openers = set(list(corresponding_list.values()))
 illegal_closes = 0
 stack = []
 
+
 for row in rows:
     for c in row:
         if c in openers:
@@ -35,5 +36,7 @@ for row in rows:
                 break
             else:
                 stack.pop()
+    stack = []
+
 
 print(illegal_closes)
