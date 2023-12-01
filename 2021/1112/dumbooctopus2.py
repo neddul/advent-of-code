@@ -76,20 +76,36 @@ def reset_flashed(arr):
 
 flashes = 0
 
+def check_sync(arr):
+    for y in range(len(arr)):
+        row = arr[y]
+        for x in range(len(row)):
+            if arr[y][x] != 0:
+                return False
+    return True
+                
+
+# for _ in range(100):
+#     increase_energy(rows)
+#     energy_flash = count_flashes(rows)
+
+#     flashes += energy_flash
+#     reset_flashed(rows)        
 
 
-for _ in range(100):
+synced = False
+wave = 0
+while not synced:
     increase_energy(rows)
     energy_flash = count_flashes(rows)
 
     flashes += energy_flash
-    reset_flashed(rows)        
-
-
-
+    reset_flashed(rows)       
+    wave +=1
+    synced = check_sync(rows) 
 
 print(flashes)
-
+print(wave)
 
 
 
