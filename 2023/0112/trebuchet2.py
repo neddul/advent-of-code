@@ -1,15 +1,6 @@
 with open("input.txt",'r') as f:
     data = f.read()
-
-rows2 = data.split('\n')
-
-
-def is_integer(s):
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
+rows = data.split('\n')
 
 def check_if_word_number(c):
     x = c[:3]
@@ -19,7 +10,6 @@ def check_if_word_number(c):
         return "2"
     if x == "six":
         return "6"
-    
     x = c[:4]
     if x == "four":
         return "4"
@@ -36,26 +26,20 @@ def check_if_word_number(c):
         return "7"
     return ""
 
-
-for rows in rows2:
+number_sum = 0
+for row in rows:
     values = ""
-    for i in range(len(rows)) :
-        if is_integer(rows[i]):
-            values +=rows[i]
-        if is_integer(check_if_word_number(rows[i:])):
-            values +=check_if_word_number(rows[i:])
-        print(values)
-
+    for i in range(len(row)) :
+        if row[i].isdigit():
+            values +=row[i]
+        c = check_if_word_number(row[i:i+5])
+        if c.isdigit():
+            values +=c
+        
     if len(values) > 1:
         values = values[0] + values[-1]
     else:
         values = values[0] + values[0]
-    print(values)
-    data += int(values)
+    number_sum += int(values)
 
-    
-
-
-    
-
-print(data)
+print(number_sum)
