@@ -12,9 +12,9 @@ your_cards = []
 for x in cards:
     a = x[0].split(': ')
     a = a[1:]
-    a = a[0].split(' ')
+    a = a[0].split()
     winning_cards.append(a)
-    b = x[1].split(' ')
+    b = x[1].split()
 
     your_cards.append(b)
 
@@ -22,7 +22,6 @@ for x in cards:
 winning_cards = [[int(x) for x in a if x.isdigit()] for a in winning_cards]
 your_cards = [[int(x) for x in a if x.isdigit()] for a in your_cards]
 
-    
 
 score = 0
 for w, m in zip(winning_cards, your_cards):
