@@ -23,7 +23,7 @@ for s in seed_info:
                     d[k] += diff
         k = d[k]
 
-
+print(len(seed_info))
 def print_maps():
     for s in seed_info:
         info = []
@@ -33,9 +33,10 @@ def print_maps():
             v = list_of_maps[i][k]
             info.append(v)
             k = v
+        info = [info[0]] + [info[1]]
         print(info)
 
-
+print_maps()
 lowest_loc = 1000000000000000000000000000000000000000000000
 for seed in seed_info:
     key = seed
