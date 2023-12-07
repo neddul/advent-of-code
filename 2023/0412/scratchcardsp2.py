@@ -1,3 +1,8 @@
+
+import time
+
+start = time.time()
+
 with open("input.txt",'r') as f:
     data = f.read()
 rows = data.split('\n')
@@ -34,3 +39,5 @@ for w, m, x, i in zip(winning_cards, your_cards, number_of_cards, [x for x in ra
             number_of_cards[j+i+1] +=x
     
 print(sum(number_of_cards))
+
+print(time.time() - start)

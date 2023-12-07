@@ -83,14 +83,6 @@ def check_sync(arr):
             if arr[y][x] != 0:
                 return False
     return True
-                
-
-# for _ in range(100):
-#     increase_energy(rows)
-#     energy_flash = count_flashes(rows)
-
-#     flashes += energy_flash
-#     reset_flashed(rows)        
 
 
 synced = False
@@ -106,7 +98,3 @@ while not synced:
 
 print(flashes)
 print(wave)
-
-
-
-
