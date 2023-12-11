@@ -5,7 +5,7 @@ rows = [list(x) for x in rows]
 
 def expand_universe(universe, extra_space=1):
     #Rows
-    indices_to_expand = []
+    indices = []
     for i in range(len(universe)):
         row = universe[i]
         should_expand = True
@@ -13,22 +13,22 @@ def expand_universe(universe, extra_space=1):
             if point == '#': #There is a galaxy in the row
                 should_expand = False
         if should_expand:
-            indices_to_expand.append(i)
-    for i in range(len(indices_to_expand)):
-        new_rows = [extra_space]*len(universe[i+indices_to_expand[i]])
-        universe = universe[:indices_to_expand[i]+i] + [new_rows] + universe[indices_to_expand[i]+i:]
+            indices.append(i)
+    for i in range(len(indices)):
+        new_rows = [extra_space]*len(universe[i+indices[i]])
+        universe = universe[:indices[i]+i] + [new_rows] + universe[indices[i]+i:]
     #Columns
-    indices_to_expand = []
+    indices = []
     for i in range(len(universe[0])):
         should_expand = True
         for j in range(len(universe)):
             if universe[j][i] == '#': #There is a galaxy in the column
                 should_expand = False
         if should_expand:
-            indices_to_expand.append(i)
-    for i in range(len(indices_to_expand)):
+            indices.append(i)
+    for i in range(len(indices)):
         for j in range(len(universe)):
-            universe[j] = universe[j][:indices_to_expand[i]+i] + [extra_space] + universe[j][indices_to_expand[i]+i:]
+            universe[j] = universe[j][:indices[i]+i] + [extra_space] + universe[j][indices[i]+i:]
     return universe
 
 def galaxy_locations(universe, space_size=1):
@@ -42,7 +42,7 @@ def galaxy_locations(universe, space_size=1):
                 offsetx+=1
             if universe[i][j] == '#': #A galaxy
                 space_size_offset = space_size - 1 if space_size > 1 else space_size
-                galaxies.append((i+offsety*(space_size_offset), j+offsetx*(space_size_offset)))
+                galaxies.append((i+offsety*(space_size_offset-1), j+offsetx*(space_size_offset-1)))
             if offsetx == m:
                 offsety+=1
     return galaxies
@@ -55,5 +55,7 @@ def distance_to_other_galaxies(my_galaxy_locations):
             distance = abs(g[0] - other_locations[0]) + abs(g[1] - other_locations[1])
             cumsum+=distance
     return cumsum
-print(f"Part 1: {distance_to_other_galaxies(galaxy_locations(expand_universe(rows, 1), 1-1))}")
-print(f"Part 2: {distance_to_other_galaxies(galaxy_locations(expand_universe(rows, 1_000_000), 1_000_000-1))}")
+part1 = 1
+part2 = 1_000_000
+print(f"Part 1: {distance_to_other_galaxies(galaxy_locations(expand_universe(rows, part1), part1))}")
+print(f"Part 2: {distance_to_other_galaxies(galaxy_locations(expand_universe(rows, part2), part2))}")
