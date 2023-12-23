@@ -1,0 +1,1 @@
+with open("input_test.txt",'r') as f:     data = f.read().split()
