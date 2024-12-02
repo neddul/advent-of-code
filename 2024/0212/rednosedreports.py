@@ -1,7 +1,6 @@
 with open("input.txt",'r') as f:
     data = f.read()
 rows = data.split('\n')
-print(rows)
 
 def test_row(my_list):
     is_d = False
@@ -21,7 +20,6 @@ def test_row(my_list):
         else:
             break  
     return succ
-
 
 def check_row(my_list, p2):
     res = True
