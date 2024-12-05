@@ -5,6 +5,7 @@ rows = data.split('\n')
 rules = {}
 updates = []
 
+# Make rules for pages
 for i in range(len(rows)):
     if '|' in rows[i]:
         rule = rows[i].split('|')
@@ -16,6 +17,7 @@ for i in range(len(rows)):
         updates = rows[i+1:]
         break
 
+# Make list with ints for updates
 for i in range(len(updates)):
     update = updates[i].split(',')
     update = [int(x) for x in update]
@@ -33,24 +35,21 @@ def check_violated(row):
 def fix_row(row, index):
     return row[:index] + row[index+1:] + [row[index]]
 
-middle_page_number_sum = 0
-fixed_sum = 0
+p1_sum = 0
+p2_sum = 0
 
-violated_rows = []
 for update in updates:
     reversed_row = list(reversed(update))
     violated, _ = check_violated(reversed_row)
     if violated:
-        while(violated):
+        while(violated): 
             violated, index = check_violated(reversed_row)
             if violated:
                 reversed_row = fix_row(reversed_row, index)
-        fixed_sum += reversed_row[len(reversed_row)//2]
+        p2_sum += reversed_row[len(reversed_row)//2]
                 
     else: 
-        middle_page_number_sum += update[len(update)//2]
+        p1_sum += update[len(update)//2]
 
-print(middle_page_number_sum)
-print(fixed_sum)
-
-  
+print(p1_sum)
+print(p2_sum)
