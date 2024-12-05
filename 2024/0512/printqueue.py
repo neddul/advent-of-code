@@ -30,33 +30,27 @@ def check_violated(row):
                     return True, i
     return False, None
 
-middle_page_number_sum = 0
-
-violated_rows = []
-for update in updates:
-    reversed_list = list(reversed(update))
-    violated, _ = check_violated(reversed_list)
-    if violated:
-        violated_rows.append(update)    
-        
-    if not violated:
-        middle_page_number_sum += update[len(update)//2]
-
-print(middle_page_number_sum)
-
 def fix_row(row, index):
     return row[:index] + row[index+1:] + [row[index]]
 
+middle_page_number_sum = 0
 fixed_sum = 0
-for row in violated_rows:
-    reversed_row = list(reversed(row))
-    violated = True
-    i = 0
-    while(violated):
-        violated, index = check_violated(reversed_row)
-        if violated:
-            reversed_row = fix_row(reversed_row, index)
-    fixed_sum += reversed_row[len(reversed_row)//2]
-       
+
+violated_rows = []
+for update in updates:
+    reversed_row = list(reversed(update))
+    violated, _ = check_violated(reversed_row)
+    if violated:
+        while(violated):
+            violated, index = check_violated(reversed_row)
+            if violated:
+                reversed_row = fix_row(reversed_row, index)
+        fixed_sum += reversed_row[len(reversed_row)//2]
+                
+    else: 
+        middle_page_number_sum += update[len(update)//2]
+
+print(middle_page_number_sum)
 print(fixed_sum)
+
   
