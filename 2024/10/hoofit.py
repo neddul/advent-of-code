@@ -23,7 +23,7 @@ def count_reachable_nines(startpos, x, y, search_num):
             if valid_pos(nx, ny):
                 if rows[ny][nx].isnumeric():
                     if int(rows[ny][nx]) == search_num:
-                        if int(rows[ny][nx]) == search_num and search_num == 9:
+                        if search_num == 9:
                             nine_pos = (nx, ny)
                             reachable_nines.add((startpos, nine_pos))
                             my_list.append(1)
