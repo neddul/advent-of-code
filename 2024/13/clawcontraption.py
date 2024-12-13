@@ -31,10 +31,8 @@ def my_eq(buttona, buttonb, prize, p2=False):
     ax, bx = buttona[0], buttonb[0]
     ay, by = buttona[1], buttonb[1]
 
-    det = (ax*by - bx*ay)
-    if det != 0:
-        b = (ax*py - ay*px)/(ax*by - ay*bx)
-        a=(px - bx*b)/ax
+    b = (ax*py - ay*px)/(ax*by - ay*bx)
+    a=(px - bx*b)/ax
 
     if a == int(a) and b == int(b):
         return a, b
