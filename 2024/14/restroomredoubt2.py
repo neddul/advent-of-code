@@ -46,19 +46,39 @@ while(second < 103*101):
     
     if q1 > len(robot_run)*0.44:
         for x in robot_map:
-            print(x)
+            row = ""
+            for y in x:
+                row += y
+            print(row)
+
+            
         print(second)
     elif q2 > len(robot_run)*0.44:
         for x in robot_map:
-            print(x)
+            row = ""
+            for y in x:
+                row+=y
+            print(row)
+
+            
         print(second)
     elif q3 > len(robot_run)*0.44: 
         for x in robot_map:
-            print(x)
+            row = ""
+            for y in x:
+                row+=y
+            print(row)
+
+            
         print(second)
     elif q4 > len(robot_run)*0.44:
         for x in robot_map:
-            print(x)
+            row = ""
+            for y in x:
+                row+=y
+            print(row)
+
+            
         print(second)
     second +=1
 

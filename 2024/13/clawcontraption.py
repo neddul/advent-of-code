@@ -32,8 +32,9 @@ def my_eq(buttona, buttonb, prize, p2=False):
     ay, by = buttona[1], buttonb[1]
 
     b = (ax*py - ay*px)/(ax*by - ay*bx)
-    a=(px - bx*b)/ax
+    a = (px - bx*b)/ax
 
+    print(a, b)
     if a == int(a) and b == int(b):
         return a, b
     
