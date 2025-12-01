@@ -8,13 +8,10 @@ counter2 = 0
 
 
 for rotate in rows:
-    nocountzero = True
     direction = rotate[0]
     nudges = int(rotate[1:])
     
     last_num = number
-    new_num = nudges 
-    
     hundreds = int(nudges / 100)
 
     counter2 += hundreds
@@ -40,9 +37,6 @@ for rotate in rows:
     if direction == "L" and last_num == 0:
         counter2 -= 1
 
-
-    print(rotate, counter2, number)
-    counter3 = counter2
     
 print(counter)  
 print(counter2)  
