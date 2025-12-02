@@ -1,6 +1,7 @@
-with open("input.txt",'r') as f:
+with open("test.txt",'r') as f:
     data = f.read()
 rows = data.split(',')
+import math
 
 p1 = 0
 p2 = 0
@@ -9,39 +10,21 @@ my_set = set()
 
 def test_num(number):
     test = False
-    #1 repeating
-    num_len = len(number)
-
-    for size in range(1, len(number) + 1):
-
+    for size in range(1, math.ceil(len(number)/2) + 2):
         if test:
-            # print("Returned")
             return int(number)
-            
-
-        if size > (num_len/2):
-            break
 
         start = number[:size]
-        # print(start)
-    
-
-    
         succ = True
         for i in range(size, len(number), size):
             chunk = number[i:i+size]
-            # print(number, start, chunk)
+            print(start, chunk, succ)
             if chunk != start:
                 succ = False
-                test = False
-                
-            
-            # print(succ)
+                break
         
-            if succ:
-                test = True
-        
-        
+        if succ:
+            test = True
     return 0
 
 for row in rows:
@@ -53,17 +36,9 @@ for row in rows:
             start_half = str(i)
 
         t_id = int(start_half*2)
-        # print(start_half, t_id)
-
-        # print(t_id)
         if t_id >= int(start) and t_id <= int(stop):
-            # print(t_id)
             my_set.add(t_id)
-        
-        # print(i)
+
         p2 += test_num(str(i))
         
-        # if ans != 0:
-        #     print(ans)
-
 print(p2)
