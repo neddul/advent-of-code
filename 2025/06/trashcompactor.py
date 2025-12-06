@@ -14,7 +14,19 @@ for i in range(len(ops_index)):
     cell = [r[start:end] for r in numbers]
     cells.append((cell, ops[ops_index[i]]))
 
+def rotate_cell(cell):
+    list_of_numbs = []
+    for i in range(len(cell[0])):
+        string_numb = ""
+        for numb in cell:
+            string_numb += numb[-(i+1)]    
+        string_numb = string_numb.replace(" ", "")
+        if string_numb:
+            list_of_numbs.append(int(string_numb))
+    return list_of_numbs
+
 def sum_cells(numbers, op):
+    numbers = [int(x) for x in numbers]
     if op == '*':
         p = 1
         for numb in numbers:
@@ -23,27 +35,11 @@ def sum_cells(numbers, op):
     else:
         return sum(numbers)
 
-def get_nums(numbers, p2):
-    list_of_numbs = []
-    if p2:
-        for i in range(len(numbers[0])):
-            string_numb = ""
-            for numb in numbers:
-                string_numb += numb[-(i+1)]    
-            string_numb = string_numb.replace(" ", "")
-            if string_numb:
-                list_of_numbs.append(int(string_numb))
-    else:
-        for number in numbers:
-            list_of_numbs.append(int(number))
-
-    return list_of_numbs
-
 p1 = 0
 p2 = 0
 for (cell, op) in cells:
-    p1 += sum_cells(get_nums(cell, False), op)
-    p2 += sum_cells(get_nums(cell, True), op)
+    p1 += sum_cells(cell, op)
+    p2 += sum_cells(rotate_cell(cell), op)
     
 print(p1)
 print(p2)
