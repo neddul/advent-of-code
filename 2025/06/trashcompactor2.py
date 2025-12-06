@@ -2,22 +2,17 @@ with open("input.txt",'r') as f:
     data = f.read()
 rows = data.split('\n')
 numbers, ops = rows[:-1], rows[-1]
-ops += "+"
 
-ops_index = []
-for i in range(len(ops)):
-    if ops[i] == '*' or ops[i] == '+':
-        ops_index.append(i)
+ops_index = [i for i, ch in enumerate(ops) if ch in "+*"]
+boundaries = ops_index + [len(ops)]
 
 cells = []
-prev = 0
-for index in ops_index[1:]:
-    cell = []
-    for numb in numbers:
 
-        cell.append(numb[prev:index])
-    cells.append((cell, ops[prev]))
-    prev = index
+for i in range(len(ops_index)):
+    start = ops_index[i]
+    end   = boundaries[i+1]
+    cell = [r[start:end] for r in numbers]
+    cells.append((cell, ops[ops_index[i]]))
 
 p2 = 0
 for (numbs, op) in cells:
@@ -29,7 +24,6 @@ for (numbs, op) in cells:
         string_numb = string_numb.replace(" ", "")
         if string_numb:
             nums.append(int(string_numb))
-    
     p = 0
     if op == '*':
         p = 1
@@ -41,5 +35,3 @@ for (numbs, op) in cells:
     p2 += p
 
 print(p2)
-    
-
