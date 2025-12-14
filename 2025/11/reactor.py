@@ -1,32 +1,26 @@
 with open("input.txt",'r') as f:
     data = f.read()
 rows = data.split('\n')
-from collections import defaultdict
-my_dict = defaultdict(list)
+my_dict = dict()
 
 for row in rows:
     key, values = row.split(': ')
-    for value in values.split(" "):
-        my_dict[key].append(value)
+    my_dict[key] = values.split()
 
-def paths(ye):
+def part1(key):
     cache = {}
     def aux(key):
-        if key == "you":
-            return 0 # to avoid loops
         if key in cache:
             return cache[key]
-        if my_dict[key][0] == "out":
+        if key == "out":
             return 1
-        if key not in my_dict:
+        values = my_dict.get(key)
+        if values is None:
             return 0
         
-        cache[key] = sum([aux(k) for k in my_dict[key]])
+        cache[key] = sum([aux(k) for k in values])
         return cache[key]
-    return aux(ye)
+    
+    return sum(aux(k) for k in my_dict[key])
 
-p1 = 0
-for v in my_dict["you"]:
-    p1 += paths(v)
-
-print(p1)
+print(part1('you'))
